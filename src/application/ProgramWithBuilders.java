@@ -10,13 +10,7 @@ public class ProgramWithBuilders {
 		
 		String path = "/home/scaziti/Desktop/in.txt";
 		
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try {
-			
-			fileReader = new FileReader(path);
-			bufferedReader = new BufferedReader(fileReader);
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))){
 			
 			String line = bufferedReader.readLine();
 			
@@ -30,19 +24,6 @@ public class ProgramWithBuilders {
 			
 			System.out.println("Error: " + e.getMessage());
 			
-		} finally {
-			
-			try {
-				if (fileReader != null) {
-					fileReader.close();
-				}
-				if (bufferedReader != null) {
-					bufferedReader.close();
-				}
-			} catch (IOException e) {
-				
-				e.getStackTrace();
-			}
-		}
+		} 
 	}
 }
